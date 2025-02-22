@@ -79,20 +79,45 @@ This project implements a **real-time people tracking system** using YOLO for ob
 
 ---
 
-## ⚠️ Challenges & Potential Improvements
+## ✅ **Challenges Accomplished**  
+1. **Focusing on Core Functionalities First**  
+   - Object detection, tracking, and counting were prioritized over additional features.  
+   - Ensured a **fully working backend** before integrating a frontend or dashboard.  
 
-### ✅ **Challenges Resolved**
+2. **Handling Real-Time Video Processing**  
+   - Successfully **streamed HLS CCTV** video input.  
+   - Optimized **YOLO v11n + BoT-SORT** to maintain a good **FPS for real-time processing**.  
 
-- Successfully **integrated API and WebSocket** for real-time data updates.
-- Implemented a working **entry-exit tracking logic** with polygon intersection.
+3. **Implementing Entry-Exit Logic**  
+   - Developed a **robust tracking system** to count people **entering and exiting** an area.  
+   - Designed **logic to determine if a person is inside the polygon** dynamically.  
 
-### 🛠 **Potential Improvements**
+4. **WebSocket Integration for Live Updates**  
+   - Implemented a **WebSocket-based** real-time streaming system.  
+   - Ensured **frontend updates instantly** when a person enters/exits the area.  
 
-1. **Multi-Area Support**: Implement multiple polygon areas instead of a single predefined area.
-2. **Improved Classification of People Inside an Area**: Define better logic for detecting people "inside" an area based on their movement.
-3. **Enhanced Multi-Object Tracking (MOT)**: Improve tracking persistence across frames.
-4. **Custom Model Training**: Train a YOLO model with **better person detection** for CCTV environments.
-5. **Scalability**: Support multiple camera feeds dynamically.
+5. **Efficient Data Storage & Retrieval**  
+   - Optimized database schema to **store logs efficiently**.  
+   - Designed API endpoints to **return real-time and historical data** effectively.  
+
+6. **Docker Deployment & Multi-Arch Support**  
+   - Successfully containerized the system with **Docker Compose**.  
+   - Added support for **both AMD64 and x86 architectures**.  
+
+7. **Developing a Web-Based Dashboard (Bonus Feature)**  
+   - Created a **Next.js dashboard** to visualize tracking results.  
+   - Integrated **real-time video and metadata** display on the frontend.  
+
+---
+
+## ⚠️ Potential Improvements  
+
+### 🛠 **Potential Improvements**  
+1. **Multi-Area Support**: Implement multiple polygon areas instead of a single predefined area.  
+2. **Improved Classification of People Inside an Area**: Define better logic for detecting people "inside" an area based on their movement.  
+3. **Enhanced Multi-Object Tracking (MOT)**: Improve tracking persistence across frames.  
+4. **Custom Model Training**: Train a YOLO model with **better person detection** for CCTV environments.  
+5. **Scalability**: Support multiple camera feeds dynamically.  
 
 ---
 
@@ -122,7 +147,7 @@ docker-compose -f docker-compose-86.yaml up --build
    ```
 2. Start the FastAPI server:
    ```bash
-   uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+   fastapi run main.py
    ```
 
 #### **Frontend (Next.js)**
