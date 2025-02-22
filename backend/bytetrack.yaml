@@ -1,0 +1,13 @@
+# Ultralytics 🚀 AGPL-3.0 License - https://ultralytics.com/license
+
+# Default Ultralytics settings for ByteTrack tracker when using mode="track"
+# For documentation and examples see https://docs.ultralytics.com/modes/track/
+# For ByteTrack source code see https://github.com/ifzhang/ByteTrack
+
+tracker_type: bytetrack # tracker type, ['botsort', 'bytetrack']
+track_high_thresh: 0.25
+track_low_thresh: 0.05  # Menerima deteksi yang lebih lemah
+new_track_thresh: 0.2  # Tidak mudah membuat ID baru
+track_buffer: 50  # Objek tetap dilacak lebih lama (~2 detik)
+match_thresh: 0.7  # Lebih mudah mencocokkan ID antar-frame
+fuse_score: False  # Fokus pada bounding box, bukan confidence YOLO

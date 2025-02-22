@@ -1,0 +1,41 @@
+# === Stage 1: Build dependencies ===
+FROM --platform=linux/arm64 python:3.11-slim as builder
+
+WORKDIR /app
+
+RUN apt-get update && apt-get install -y --no-install-recommends gcc libc-dev libgl1 libglib2.0-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY requirements-arc64.txt .
+
+RUN python -m venv /venv && \
+    /venv/bin/pip install --no-cache-dir --upgrade pip && \
+    /venv/bin/pip install --no-cache-dir -r requirements-arc64.txt
+
+# === Stage 2: Final production image ===
+FROM --platform=linux/arm64 python:3.11-slim
+
+WORKDIR /app
+
+RUN groupadd -g 1000 appuser && useradd -r -u 1000 -g appuser appuser
+
+RUN apt-get update && apt-get install -y --no-install-recommends gcc libc-dev libgl1 libglib2.0-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=builder /venv /venv
+COPY . .
+
+ENV PATH="/venv/bin:$PATH"
+ENV PYTHONUNBUFFERED=1
+ENV MPLCONFIGDIR=/tmp/matplotlib
+
+RUN chown -R appuser:appuser /app
+
+USER appuser
+
+EXPOSE 8000
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+    CMD curl -f http://localhost:8000/health || exit 1
+
+CMD ["gunicorn", "-k", "uvicorn.workers.UvicornWorker", "-b", "0.0.0.0:8000", "main:app"]

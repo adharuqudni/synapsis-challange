@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  nextjs:
+    build: ./frontend
+    container_name: nextjs-app
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - BACKEND_URL=http://backend:8000 
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    container_name: fastapi-app
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
