@@ -6,6 +6,9 @@ This project implements a **real-time people tracking system** using YOLO for ob
 
 ---
 
+## 📌 Dashboard Overview
+![Dashboard Preview](dashboard.jpeg)
+
 ## 🚀 Features
 
 ### ✅ **Database Design** (✔️ Done)
@@ -62,6 +65,18 @@ This project implements a **real-time people tracking system** using YOLO for ob
 - Supports **both ARM64 and x86 architectures**:
   - `docker-compose.yaml` → for **ARM64**.
   - `docker-compose-86.yaml` → for **x86**.
+
+---
+
+### **🛠️ Minimum Requirements**  
+Before running the project, ensure your system meets the following requirements:  
+
+| Component  | Minimum Version |
+|------------|---------------|
+| **Python** | `3.11` |
+| **Node.js** | `16.x` or later |
+| **Docker** | `20.x` or later |
+| **Docker Compose** | `v2.x` or later |
 
 ---
 
