@@ -98,14 +98,7 @@ This project implements a **real-time people tracking system** using YOLO for ob
 
 ## 🔧 How to Run
 
-### 1️⃣ **Clone the Repository**
-
-```bash
-git clone https://github.com/your-repo/people-tracking.git
-cd people-tracking
-```
-
-### 2️⃣ **Run with Docker Compose**
+### 1️⃣ **Run with Docker Compose**
 
 For **ARM64 architecture**:
 
